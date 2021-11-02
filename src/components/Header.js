@@ -13,7 +13,7 @@ function Header() {
             </Search>
             <UserContainer>
                <p>Ranjitha</p>
-               <img src="avatar.png" />
+               <img src="avatar.png" alt="avatar"/>
             </UserContainer>
         </Container>
     )
@@ -26,8 +26,10 @@ const Container = styled.div `
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #5B2C6F;
+    background-color: #011f4b;
     color: #ffff;
+    padding: 5px 16px;
+    box-shadow:  0 1px 0 0 rgb(255 255 255 / 10%);
     position: relative;
 `
 

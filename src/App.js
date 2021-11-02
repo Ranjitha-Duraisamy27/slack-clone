@@ -5,15 +5,31 @@ import Login from './components/Login'
 import styled from 'styled-components'
 import Header from './components/Header'
 import Sidebar from './components/Sidebar'
+import db from './firebase'
+import { useEffect, useState } from 'react'
+import { onSnapshot, collection } from "firebase/firestore";
 
 function App() {
+
+  const [rooms, setRooms] = useState([]);
+  const getChannels = () => {
+    onSnapshot(collection(db, "rooms"), (snapShot) => {
+      const rooms = snapShot.docs.map(doc => ( { id: doc.id, name: doc.data().name }));
+      setRooms(rooms);
+    })
+  };
+
+  useEffect(() => {
+    getChannels();
+  }, [])
+
   return (
     <div className="App">
       <Router>
         <Container>
           <Header />
           <Main>
-            <Sidebar />
+            <Sidebar rooms={rooms} />
             <Switch>
               <Route path="/room">
                 <Chat />
